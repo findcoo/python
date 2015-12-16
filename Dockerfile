@@ -1,5 +1,3 @@
-# Commit test 
-
 FROM ubuntu:15.10
 
 MAINTAINER findcoo <powzxc@gmail.com>
@@ -113,8 +111,9 @@ RUN echo "\n\n\"neobundle start" \
 		"\nendif" >> $HOME/.vimrc 
 
 
-WORKDIR /home
-RUN chown -R User:User ./User
+RUN mkdir -p $HOME/src
+	chown -R User:User $HOME
+VOLUME $HOME/src
 
 EXPOSE 22
 
