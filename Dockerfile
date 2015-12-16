@@ -92,12 +92,12 @@ RUN echo "\n\n\"neobundle start" \
 	    "\n\t\ }}" \
 	    "\ncall neobundle#end()" \
 	    "\nNeoBundleCheck" >> $HOME/.vimrc && \
-	echo "\n\n\" supertab setting" \
+	echo "\n\n\"supertab setting" \
 		"\nlet g:SupperTabDefaultCompletionType = \"context\"" >> $HOME/.vimrc && \
-	echo "\n\n\" jedi setting" \
+	echo "\n\n\"jedi setting" \
 	    	"\nlet g:jedi#completions_enabled = 0 " \
 		"\nau FileType python let g:jedi#completions_enabled = 1" >> $HOME/.vimrc && \
-	echo "\n\n\" vim-pyenv setting" \
+	echo "\n\n\"vim-pyenv setting" \
 	    	"\nif jedi#init_python()" \
 		"\n\tfunction! s:jedi_auto_force_py_version() abort" \
 		"\n\t\tlet major_version = pyenv#python#get_internal_major_version() " \
@@ -111,7 +111,7 @@ RUN echo "\n\n\"neobundle start" \
 		"\nendif" >> $HOME/.vimrc 
 
 
-RUN mkdir -p $HOME/src
+RUN mkdir -p $HOME/src && \
 	chown -R User:User $HOME
 VOLUME $HOME/src
 
