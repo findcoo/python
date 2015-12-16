@@ -63,7 +63,8 @@ RUN echo "\n\n\"vimrc default setting" \
 	"\nnmap <leader>l :set list!<CR>" \
 	"\nset nu" \
 	"\nset autochdir" \
-	"\nset tabstop=2" \ 
+	"\nset ts=2" \ 
+	"\nset bs=2" \
 	"\nset noexpandtab" \
 	"\nset nocompatible" \
 	"\nsyntax on" >> $HOME/.vimrc
