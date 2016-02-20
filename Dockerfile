@@ -8,15 +8,15 @@ RUN apt-get update && \
 				openssh-server gfortran sudo make \
 				cmake libssl-dev libreadline-dev llvm \
 				libsqlite3-dev libmysqlclient-dev python-dev \
-				python3-dev zlib1g-dev libbz2-dev 	
+				python3-dev zlib1g-dev libbz2-dev language-pack-ko	
 RUN mkdir /var/run/sshd && \
 	useradd -m User -s /bin/bash && \
 	echo 'root:root' | chpasswd && \
 	echo 'User:User' | chpasswd && \
 	echo 'User 	ALL=(ALL) 	ALL' >> /etc/sudoers.d/User && \
 	sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
- 	sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-
+ 	sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
+	locale-gen ko_KR.UTF-8 
 WORKDIR /home/User
 ENV HOME /home/User
 
@@ -31,8 +31,8 @@ RUN echo 'export PYENV_ROOT='$PYENV_ROOT >> $HOME/.bashrc && \
 #pyenv install and setting
 ENV EXEC_PYENV $PYENV_ROOT/bin/pyenv 
 RUN $EXEC_PYENV install 2.7.10 && \
-	$EXEC_PYENV install 3.5.0 && \
-	$EXEC_PYENV global 2.7.10 3.5.0 && \
+	$EXEC_PYENV install 3.5.1 && \
+	$EXEC_PYENV global 2.7.10 3.5.1 && \
 	$EXEC_PYENV rehash 
 
 #building vim, using for pyenv
@@ -63,8 +63,8 @@ RUN echo "\n\n\"vimrc default setting" \
 	"\nnmap <leader>l :set list!<CR>" \
 	"\nset nu" \
 	"\nset autochdir" \
-	"\nset ts=2" \ 
-	"\nset bs=2" \
+	"\nset ts=4" \ 
+	"\nset bs=4" \
 	"\nset noexpandtab" \
 	"\nset nocompatible" \
 	"\nsyntax on" >> $HOME/.vimrc
