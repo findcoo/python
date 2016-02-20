@@ -116,6 +116,6 @@ RUN mkdir -p $HOME/src && \
 	chown -R User:User $HOME
 VOLUME $HOME/src
 
-EXPOSE 22
+EXPOSE 100-1024 5000-5999 8000-8999 9000-9999
 
 CMD ["/usr/sbin/sshd", "-D"]
